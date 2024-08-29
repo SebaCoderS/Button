@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUTTON</title>
+    <link rel="stylesheet" href="pisello.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 class="titolo">BUTTON</h1>
+    <p>(click the button)</p>
+    <p>but not too much</p>
+
+    <div class="button-container">
+        <button id="animatedButton" onclick="handleClick()">Click Me</button>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+
+        function handleClick() {
+            clickCount++;
+            const messageDiv = document.getElementById('message');
+            
+            if (clickCount === 10) {
+                messageDiv.textContent = 'Try to write Jerry in the console';
+            } else {
+                messageDiv.textContent = 'You clicked the button!';
+            }
+            
+            setTimeout(() => {
+                messageDiv.textContent = '';
+            }, 2000);
+
+            // Opzionale: mostra un messaggio nella console
+            if (clickCount === 10) {
+                console.log('Jerry');
+            }
+        }
+
+        // Intercetta i comandi della console
+        (function() {
+            const originalConsole = console.log;
+            
+            console.log = function(message) {
+                if (message === 'Jerry') {
+                    window.location.href = 'https://pablo-restrepo.github.io/Troll-Page-Scream/';
+                }
+                // Richiama il metodo originale
+                originalConsole.apply(console, arguments);
+            };
+        })();
+    </script>
+</body>
+</html>
